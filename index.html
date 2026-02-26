@@ -1,0 +1,986 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lucky Fashion — African Couture · Monrovia, Liberia</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Cinzel:wght@400;600;800&family=Raleway:wght@200;300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{--gold:#C9A84C;--gold-light:#E8C97A;--deep:#0A0603;--dark:#141008;--mid:#1E1A0E;--earth:#3B2F1A;--cream:#F5EDD8;--warm:#D4C4A0;--red:#8B1A1A;--green:#1A5C2A;--blue:#1A2D5C;}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{background:var(--deep);color:var(--cream);font-family:'Raleway',sans-serif;font-weight:300;overflow-x:hidden;cursor:none;}
+
+.cursor{width:12px;height:12px;background:var(–gold);border-radius:50%;position:fixed;top:0;left:0;pointer-events:none;z-index:99999;transform:translate(-50%,-50%);mix-blend-mode:difference;}
+.cursor-ring{width:36px;height:36px;border:1px solid var(–gold);border-radius:50%;position:fixed;top:0;left:0;pointer-events:none;z-index:99998;transform:translate(-50%,-50%);transition:all .35s cubic-bezier(.25,.46,.45,.94);opacity:.7;}
+
+nav{position:fixed;top:0;width:100%;z-index:1000;display:flex;justify-content:space-between;align-items:center;padding:1.5rem 4rem;background:linear-gradient(to bottom,rgba(10,6,3,.96),transparent);backdrop-filter:blur(4px);transition:all .4s;}
+nav.scrolled{background:rgba(10,6,3,.98);border-bottom:1px solid rgba(201,168,76,.2);padding:1rem 4rem;}
+.nav-logo{font-family:‘Cinzel’,serif;font-size:1.5rem;font-weight:800;letter-spacing:.15em;color:var(–gold);text-decoration:none;}
+.nav-logo span{color:var(–cream);}
+.nav-links{display:flex;gap:2rem;list-style:none;align-items:center;}
+.nav-links a{color:var(–warm);text-decoration:none;font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;transition:color .3s;}
+.nav-links a:hover{color:var(–gold);}
+.nav-cta{background:var(–gold);color:var(–deep)!important;padding:.5rem 1.3rem!important;font-weight:500!important;}
+.nav-cta:hover{background:var(–gold-light)!important;}
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;z-index:1100;}
+.hamburger span{width:28px;height:1.5px;background:var(–gold);transition:all .3s;display:block;}
+.hamburger.active span:nth-child(1){transform:rotate(45deg) translate(4px,4px);}
+.hamburger.active span:nth-child(2){opacity:0;}
+.hamburger.active span:nth-child(3){transform:rotate(-45deg) translate(4px,-4px);}
+.mobile-menu{display:none;position:fixed;inset:0;background:rgba(10,6,3,.98);z-index:1050;flex-direction:column;align-items:center;justify-content:center;gap:2rem;}
+.mobile-menu.open{display:flex;}
+.mobile-menu a{font-family:‘Cinzel’,serif;font-size:1.6rem;color:var(–cream);text-decoration:none;letter-spacing:.1em;transition:color .3s;}
+.mobile-menu a:hover{color:var(–gold);}
+
+#hero{height:100vh;position:relative;display:flex;align-items:center;justify-content:center;overflow:hidden;}
+.hero-bg{position:absolute;inset:0;background:url(‘https://images.unsplash.com/photo-1590735213920-68192a487bc2?w=1920&q=80’) center/cover no-repeat;}
+.hero-bg::after{content:’’;position:absolute;inset:0;background:linear-gradient(135deg,rgba(10,6,3,.9) 0%,rgba(10,6,3,.5) 50%,rgba(10,6,3,.88) 100%);}
+.kente-overlay{position:absolute;inset:0;opacity:.05;background-image:repeating-linear-gradient(0deg,var(–gold) 0px,var(–gold) 2px,transparent 2px,transparent 30px),repeating-linear-gradient(90deg,var(–red) 0px,var(–red) 2px,transparent 2px,transparent 30px);z-index:1;}
+.hero-content{text-align:center;z-index:2;padding:2rem;animation:heroFade 1.5s ease forwards;}
+@keyframes heroFade{from{opacity:0;transform:translateY(40px);}to{opacity:1;transform:translateY(0);}}
+.hero-eyebrow{font-size:.7rem;letter-spacing:.5em;text-transform:uppercase;color:var(–gold);margin-bottom:1.5rem;animation:slideUp 1s .3s both;}
+.hero-title{font-family:‘Cinzel’,serif;font-size:clamp(3.5rem,8vw,8rem);font-weight:800;line-height:.9;letter-spacing:-.02em;margin-bottom:.5rem;animation:slideUp 1s .5s both;}
+.hero-title .outline{-webkit-text-stroke:1.5px var(–cream);color:transparent;}
+.hero-subtitle{font-family:‘Cormorant Garamond’,serif;font-style:italic;font-size:clamp(1.1rem,2.5vw,1.8rem);color:var(–warm);margin:1.5rem 0 2.5rem;animation:slideUp 1s .7s both;}
+.liberia-badge{display:inline-flex;align-items:center;gap:.7rem;margin-bottom:2rem;border:1px solid rgba(201,168,76,.3);padding:.5rem 1.2rem;animation:slideUp 1s .9s both;}
+.liberia-txt{font-size:.62rem;letter-spacing:.35em;text-transform:uppercase;color:var(–gold);}
+.hero-btns{display:flex;gap:1.2rem;justify-content:center;animation:slideUp 1s 1s both;flex-wrap:wrap;}
+@keyframes slideUp{from{opacity:0;transform:translateY(30px);}to{opacity:1;transform:translateY(0);}}
+.btn-gold{background:var(–gold);color:var(–deep);padding:.9rem 2.2rem;font-family:‘Raleway’,sans-serif;font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;text-decoration:none;font-weight:500;transition:all .3s;display:inline-block;}
+.btn-gold:hover{background:var(–gold-light);transform:translateY(-2px);}
+.btn-outline{border:1px solid var(–gold);color:var(–gold);padding:.9rem 2.2rem;font-family:‘Raleway’,sans-serif;font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;text-decoration:none;font-weight:400;transition:all .3s;display:inline-block;}
+.btn-outline:hover{background:rgba(201,168,76,.1);transform:translateY(-2px);}
+.hero-scroll{position:absolute;bottom:2.5rem;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:.5rem;}
+.hero-scroll span{font-size:.58rem;letter-spacing:.35em;text-transform:uppercase;color:var(–warm);opacity:.5;}
+.scroll-bar{width:1px;height:45px;background:linear-gradient(to bottom,var(–gold),transparent);animation:pulse 2s infinite;}
+@keyframes pulse{0%,100%{opacity:1;transform:scaleY(1);}50%{opacity:.3;transform:scaleY(.5);}}
+
+.marquee-wrap{overflow:hidden;border-top:1px solid rgba(201,168,76,.2);border-bottom:1px solid rgba(201,168,76,.2);padding:.9rem 0;background:var(–mid);}
+.marquee-track{display:flex;gap:3rem;animation:marquee 22s linear infinite;white-space:nowrap;}
+.mi{font-family:‘Cinzel’,serif;font-size:.68rem;letter-spacing:.3em;text-transform:uppercase;color:var(–gold);opacity:.65;flex-shrink:0;}
+.mi::before{content:‘✦’;margin-right:1rem;}
+@keyframes marquee{from{transform:translateX(0);}to{transform:translateX(-50%);}}
+
+.container{max-width:1400px;margin:0 auto;padding:0 4rem;}
+section{padding:6rem 0;}
+.section-label{font-size:.64rem;letter-spacing:.5em;text-transform:uppercase;color:var(–gold);display:block;margin-bottom:1rem;}
+.section-title{font-family:‘Cinzel’,serif;font-size:clamp(1.8rem,3.5vw,3.2rem);font-weight:600;line-height:1.1;margin-bottom:1.2rem;}
+.section-body{font-family:‘Cormorant Garamond’,serif;font-size:1.1rem;color:var(–warm);line-height:1.9;max-width:580px;}
+.gold-divider{width:55px;height:2px;background:linear-gradient(to right,var(–gold),transparent);margin:1.2rem 0;}
+.fade-in{opacity:0;transform:translateY(35px);transition:opacity .8s ease,transform .8s ease;}
+.fade-in.visible{opacity:1;transform:translateY(0);}
+
+/* WOMEN’S */
+#womens{background:var(–dark);}
+.coll-intro{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center;margin-bottom:4rem;}
+.coll-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem;}
+.coll-card{position:relative;overflow:hidden;cursor:pointer;}
+.coll-card img{width:100%;aspect-ratio:3/4;object-fit:cover;display:block;transition:transform .6s cubic-bezier(.25,.46,.45,.94);}
+.coll-card:hover img{transform:scale(1.07);}
+.coll-card::before{content:’’;position:absolute;inset:0;background:linear-gradient(to top,rgba(10,6,3,.92) 0%,transparent 55%);z-index:1;}
+.card-info{position:absolute;bottom:0;left:0;right:0;padding:1.5rem;z-index:2;transform:translateY(10px);transition:transform .4s;}
+.coll-card:hover .card-info{transform:translateY(0);}
+.card-tag{font-size:.58rem;letter-spacing:.3em;text-transform:uppercase;color:var(–gold);display:block;margin-bottom:.25rem;}
+.card-name{font-family:‘Cormorant Garamond’,serif;font-size:1.2rem;font-weight:400;}
+.card-price{font-size:.78rem;color:var(–warm);margin-top:.2rem;}
+.card-btn{display:inline-block;margin-top:.6rem;font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;color:var(–gold);border-bottom:1px solid var(–gold);padding-bottom:1px;opacity:0;transition:opacity .3s;}
+.coll-card:hover .card-btn{opacity:1;}
+.style-tags{display:flex;gap:.5rem;flex-wrap:wrap;margin-top:2rem;}
+.style-tag{border:1px solid rgba(201,168,76,.35);color:var(–warm);padding:.35rem .9rem;font-size:.62rem;letter-spacing:.15em;text-transform:uppercase;cursor:pointer;transition:all .3s;}
+.style-tag:hover,.style-tag.active{border-color:var(–gold);color:var(–gold);}
+
+/* MEN’S */
+#mens{background:linear-gradient(160deg,#0A0603 0%,#100C05 100%);}
+.mens-intro{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center;margin-bottom:4rem;}
+.mens-visual{position:relative;}
+.mens-hero-img{width:100%;aspect-ratio:4/5;object-fit:cover;display:block;}
+.mens-badge{position:absolute;top:2rem;left:-1.5rem;background:var(–gold);color:var(–deep);padding:.8rem 1.5rem;font-family:‘Cinzel’,serif;font-size:.75rem;letter-spacing:.15em;text-transform:uppercase;}
+.mens-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;}
+.mens-card{position:relative;overflow:hidden;cursor:pointer;}
+.mens-card img{width:100%;aspect-ratio:3/4;object-fit:cover;display:block;transition:transform .6s ease;}
+.mens-card:hover img{transform:scale(1.07);}
+.mens-card::before{content:’’;position:absolute;inset:0;background:linear-gradient(to top,rgba(10,6,3,.9) 0%,transparent 60%);z-index:1;}
+.mens-card .card-info{position:absolute;bottom:0;left:0;right:0;padding:1.2rem;z-index:2;}
+
+/* DRESS TYPES */
+#dress-types{background:var(–mid);}
+.types-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:1rem;margin-top:3rem;}
+.type-card{text-align:center;cursor:pointer;}
+.type-img-wrap{position:relative;overflow:hidden;margin-bottom:.8rem;}
+.type-img-wrap img{width:100%;aspect-ratio:2/3;object-fit:cover;display:block;transition:transform .5s;}
+.type-card:hover .type-img-wrap img{transform:scale(1.08);}
+.type-label{font-family:‘Cinzel’,serif;font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;color:var(–warm);}
+.type-sub{font-size:.62rem;color:var(–gold);opacity:.8;margin-top:.2rem;}
+
+/* GALLERY */
+#gallery{background:var(–deep);}
+.gallery-filters{display:flex;gap:1.5rem;margin-bottom:2.5rem;flex-wrap:wrap;border-bottom:1px solid rgba(201,168,76,.15);padding-bottom:1rem;}
+.gf-btn{background:none;border:none;font-family:‘Raleway’,sans-serif;font-size:.68rem;letter-spacing:.2em;text-transform:uppercase;color:var(–warm);cursor:pointer;padding:.4rem 0;border-bottom:2px solid transparent;margin-bottom:-1px;transition:all .3s;}
+.gf-btn.active,.gf-btn:hover{color:var(–gold);border-bottom-color:var(–gold);}
+.gallery-masonry{columns:4;gap:1rem;}
+.gal-item{break-inside:avoid;margin-bottom:1rem;position:relative;overflow:hidden;cursor:pointer;display:block;}
+.gal-item img{width:100%;display:block;transition:transform .5s ease;}
+.gal-item:hover img{transform:scale(1.05);}
+.gal-hover{position:absolute;inset:0;background:rgba(10,6,3,.55);display:flex;align-items:center;justify-content:center;opacity:0;transition:opacity .3s;}
+.gal-item:hover .gal-hover{opacity:1;}
+.gal-zoom{width:48px;height:48px;border:1.5px solid var(–gold);display:flex;align-items:center;justify-content:center;color:var(–gold);font-size:1.3rem;}
+.gal-caption{position:absolute;bottom:0;left:0;right:0;background:linear-gradient(transparent,rgba(10,6,3,.9));padding:1.2rem .8rem .7rem;opacity:0;transition:opacity .3s;font-size:.68rem;letter-spacing:.1em;color:var(–warm);}
+.gal-item:hover .gal-caption{opacity:1;}
+
+/* LIGHTBOX */
+.lightbox{display:none;position:fixed;inset:0;background:rgba(0,0,0,.96);z-index:9500;align-items:center;justify-content:center;}
+.lightbox.open{display:flex;}
+.lb-inner{position:relative;max-width:90vw;max-height:90vh;text-align:center;}
+.lb-img{max-width:100%;max-height:82vh;object-fit:contain;display:block;margin:0 auto;}
+.lb-close{position:absolute;top:-2.8rem;right:0;background:none;border:none;color:var(–gold);font-size:.9rem;letter-spacing:.2em;font-family:‘Raleway’,sans-serif;cursor:pointer;}
+.lb-caption{margin-top:.8rem;font-family:‘Cormorant Garamond’,serif;font-style:italic;color:var(–warm);font-size:1rem;}
+.lb-nav{position:absolute;top:50%;transform:translateY(-50%);background:rgba(201,168,76,.15);border:1px solid rgba(201,168,76,.3);color:var(–gold);width:44px;height:44px;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:1.4rem;transition:background .3s;}
+.lb-nav:hover{background:rgba(201,168,76,.3);}
+.lb-prev{left:-60px;}.lb-next{right:-60px;}
+
+/* VIDEOS */
+#videos{background:var(–dark);}
+.video-tabs{display:flex;gap:1.2rem;margin-bottom:2.5rem;flex-wrap:wrap;}
+.vt-btn{background:none;border:1px solid rgba(201,168,76,.25);color:var(–warm);padding:.5rem 1.3rem;font-family:‘Raleway’,sans-serif;font-size:.68rem;letter-spacing:.18em;text-transform:uppercase;cursor:pointer;transition:all .3s;}
+.vt-btn.active,.vt-btn:hover{border-color:var(–gold);color:var(–gold);background:rgba(201,168,76,.07);}
+.videos-featured{display:grid;grid-template-columns:2fr 1fr;gap:1.5rem;margin-bottom:2rem;}
+.video-embed-wrap{position:relative;width:100%;padding-bottom:56.25%;background:#000;overflow:hidden;}
+.video-embed-wrap iframe{position:absolute;inset:0;width:100%;height:100%;border:none;}
+.video-thumb-card{position:relative;cursor:pointer;overflow:hidden;}
+.video-thumb-card .thumb-img{width:100%;aspect-ratio:16/9;object-fit:cover;display:block;transition:transform .5s;}
+.video-thumb-card:hover .thumb-img{transform:scale(1.05);}
+.play-overlay{position:absolute;inset:0;background:rgba(10,6,3,.45);display:flex;align-items:center;justify-content:center;transition:background .3s;}
+.video-thumb-card:hover .play-overlay{background:rgba(10,6,3,.25);}
+.play-circle{width:58px;height:58px;border-radius:50%;background:rgba(201,168,76,.92);display:flex;align-items:center;justify-content:center;transition:transform .3s;}
+.play-circle::after{content:’’;border-left:20px solid var(–deep);border-top:12px solid transparent;border-bottom:12px solid transparent;margin-left:5px;}
+.video-thumb-card:hover .play-circle{transform:scale(1.12);}
+.vid-meta{padding:.8rem 0;}
+.vid-label{font-size:.58rem;letter-spacing:.3em;text-transform:uppercase;color:var(–gold);}
+.vid-title{font-family:‘Cormorant Garamond’,serif;font-size:1.1rem;margin:.25rem 0;}
+.vid-info{font-size:.72rem;color:var(–warm);opacity:.6;}
+.video-side{display:flex;flex-direction:column;gap:1.2rem;}
+.video-grid-row{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem;}
+
+/* VIDEO MODAL */
+.vmodal{display:none;position:fixed;inset:0;background:rgba(0,0,0,.93);z-index:9600;align-items:center;justify-content:center;padding:2rem;}
+.vmodal.open{display:flex;}
+.vm-inner{position:relative;width:100%;max-width:960px;}
+.vm-close{position:absolute;top:-2.8rem;right:0;background:none;border:none;color:var(–gold);font-size:.9rem;letter-spacing:.2em;font-family:‘Raleway’,sans-serif;cursor:pointer;}
+.vm-embed{position:relative;width:100%;padding-bottom:56.25%;background:#000;}
+.vm-embed iframe{position:absolute;inset:0;width:100%;height:100%;border:none;}
+
+/* LIBERIA */
+#liberia{background:linear-gradient(135deg,var(–deep) 0%,#150707 100%);position:relative;overflow:hidden;}
+#liberia::before{content:‘LIBERIA’;position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-family:‘Cinzel’,serif;font-size:18vw;font-weight:800;color:transparent;-webkit-text-stroke:1px rgba(201,168,76,.04);pointer-events:none;white-space:nowrap;}
+.lib-grid{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center;}
+.lib-img-stack{position:relative;}
+.lib-main-img{width:100%;aspect-ratio:4/5;object-fit:cover;display:block;}
+.lib-float{position:absolute;bottom:-2rem;right:-2rem;width:45%;aspect-ratio:1;object-fit:cover;border:3px solid var(–gold);}
+.lib-stats{display:grid;grid-template-columns:1fr 1fr;gap:2rem;margin-top:2.5rem;}
+.stat-item{border-left:2px solid var(–gold);padding-left:1rem;}
+.stat-num{font-family:‘Cinzel’,serif;font-size:2rem;color:var(–gold);display:block;}
+.stat-label{font-size:.65rem;letter-spacing:.2em;text-transform:uppercase;color:var(–warm);opacity:.65;}
+
+/* NEWSLETTER */
+.newsletter-strip{background:var(–gold);padding:2.5rem 0;}
+.nl-inner{display:flex;align-items:center;justify-content:space-between;gap:2rem;flex-wrap:wrap;}
+.nl-text h3{font-family:‘Cinzel’,serif;font-size:1.15rem;color:var(–deep);letter-spacing:.05em;}
+.nl-text p{font-size:.78rem;color:var(–earth);margin-top:.2rem;}
+.nl-form{display:flex;flex:1;max-width:440px;}
+.nl-input{flex:1;padding:.85rem 1.1rem;background:rgba(0,0,0,.12);border:1px solid rgba(0,0,0,.2);border-right:none;color:var(–deep);font-family:‘Raleway’,sans-serif;font-size:.85rem;outline:none;}
+.nl-input::placeholder{color:var(–earth);opacity:.7;}
+.nl-btn{background:var(–deep);color:var(–gold);border:none;padding:.85rem 1.3rem;font-family:‘Raleway’,sans-serif;font-size:.68rem;letter-spacing:.15em;text-transform:uppercase;cursor:pointer;transition:background .3s;}
+.nl-btn:hover{background:#1A120A;}
+
+/* CONTACT */
+#contact{background:var(–dark);}
+.contact-grid{display:grid;grid-template-columns:1fr 1.2fr;gap:5rem;align-items:start;}
+.c-items{margin-top:2.5rem;display:flex;flex-direction:column;gap:1.8rem;}
+.c-item{display:flex;gap:1rem;align-items:flex-start;}
+.c-icon{width:38px;height:38px;border:1px solid rgba(201,168,76,.3);display:flex;align-items:center;justify-content:center;color:var(–gold);flex-shrink:0;}
+.c-label{font-size:.58rem;letter-spacing:.3em;text-transform:uppercase;color:var(–gold);display:block;margin-bottom:.2rem;}
+.c-val{font-family:‘Cormorant Garamond’,serif;font-size:1rem;color:var(–warm);line-height:1.5;}
+.cf{display:flex;flex-direction:column;gap:1.3rem;}
+.f-group{display:flex;flex-direction:column;gap:.4rem;}
+.f-label{font-size:.62rem;letter-spacing:.25em;text-transform:uppercase;color:var(–gold);}
+.f-input,.f-textarea,.f-select{background:rgba(255,255,255,.04);border:1px solid rgba(201,168,76,.2);color:var(–cream);padding:.9rem 1.1rem;font-family:‘Raleway’,sans-serif;font-size:.88rem;font-weight:300;outline:none;transition:border-color .3s;width:100%;}
+.f-input:focus,.f-textarea:focus,.f-select:focus{border-color:var(–gold);}
+.f-textarea{min-height:130px;resize:vertical;}
+.f-select{appearance:none;background-image:url(“data:image/svg+xml,%3Csvg xmlns=‘http://www.w3.org/2000/svg’ width=‘10’ height=‘7’%3E%3Cpath fill=’%23C9A84C’ d=‘M5 7L0 0h10z’/%3E%3C/svg%3E”);background-repeat:no-repeat;background-position:right 1.1rem center;cursor:pointer;}
+.f-select option{background:var(–dark);}
+.f-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem;}
+.f-submit{background:var(–gold);color:var(–deep);border:none;padding:1.1rem 2.2rem;font-family:‘Raleway’,sans-serif;font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;font-weight:500;cursor:pointer;transition:all .3s;align-self:flex-start;}
+.f-submit:hover{background:var(–gold-light);transform:translateY(-2px);}
+
+footer{background:var(–deep);border-top:1px solid rgba(201,168,76,.12);padding:4rem 0 2rem;}
+.footer-grid{display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;gap:3.5rem;margin-bottom:3.5rem;}
+.fb-name{font-family:‘Cinzel’,serif;font-size:1.35rem;font-weight:800;color:var(–gold);letter-spacing:.12em;display:block;margin-bottom:.9rem;}
+.fb-tag{font-family:‘Cormorant Garamond’,serif;font-style:italic;color:var(–warm);opacity:.65;font-size:.92rem;line-height:1.7;}
+.socials{display:flex;gap:.8rem;margin-top:1.8rem;}
+.soc{width:36px;height:36px;border:1px solid rgba(201,168,76,.3);display:flex;align-items:center;justify-content:center;color:var(–warm);text-decoration:none;font-size:.75rem;transition:all .3s;}
+.soc:hover{border-color:var(–gold);color:var(–gold);}
+.fc h4{font-family:‘Cinzel’,serif;font-size:.72rem;letter-spacing:.2em;color:var(–gold);margin-bottom:1.3rem;}
+.fc ul{list-style:none;display:flex;flex-direction:column;gap:.7rem;}
+.fc a{color:var(–warm);text-decoration:none;font-size:.8rem;opacity:.65;transition:all .3s;letter-spacing:.04em;}
+.fc a:hover{opacity:1;color:var(–gold);padding-left:4px;}
+.footer-bottom{border-top:1px solid rgba(201,168,76,.1);padding-top:2rem;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem;}
+.fc-copy{font-size:.7rem;color:var(–warm);opacity:.45;letter-spacing:.08em;}
+
+@media(max-width:1100px){
+.gallery-masonry{columns:3;}.types-grid{grid-template-columns:repeat(3,1fr);}
+.mens-grid{grid-template-columns:repeat(2,1fr);}.footer-grid{grid-template-columns:1fr 1fr;gap:2rem;}
+}
+@media(max-width:900px){
+nav{padding:1.3rem 2rem;}nav.scrolled{padding:.9rem 2rem;}.container{padding:0 2rem;}
+.nav-links{display:none;}.hamburger{display:flex;}
+.coll-intro,.mens-intro,.lib-grid,.contact-grid{grid-template-columns:1fr;gap:2.5rem;}
+.coll-grid{grid-template-columns:repeat(2,1fr);}
+.video-grid-row,.videos-featured{grid-template-columns:1fr;}
+.gallery-masonry{columns:2;}.lb-prev{left:-45px;}.lb-next{right:-45px;}
+}
+@media(max-width:600px){
+section{padding:4rem 0;}.container{padding:0 1.2rem;}.coll-grid{grid-template-columns:1fr;}
+.types-grid{grid-template-columns:repeat(2,1fr);}.gallery-masonry{columns:2;}
+.footer-grid{grid-template-columns:1fr;}.hero-btns{flex-direction:column;align-items:center;}
+.lib-stats{grid-template-columns:1fr 1fr;}.f-row{grid-template-columns:1fr;}
+.lb-prev,.lb-next{display:none;}.nl-inner{flex-direction:column;}.nl-form{max-width:100%;width:100%;}
+.mens-grid{grid-template-columns:1fr 1fr;}
+}
+</style>
+
+</head>
+<body>
+
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<!-- NAV -->
+
+<nav id="navbar">
+  <a href="#" class="nav-logo">LUCKY <span>FASHION</span></a>
+  <ul class="nav-links">
+    <li><a href="#womens">Women's</a></li>
+    <li><a href="#mens">Men's</a></li>
+    <li><a href="#dress-types">Styles</a></li>
+    <li><a href="#gallery">Gallery</a></li>
+    <li><a href="#videos">Shows</a></li>
+    <li><a href="#liberia">Liberia</a></li>
+    <li><a href="#contact" class="nav-cta">Book Now</a></li>
+  </ul>
+  <div class="hamburger" id="hamburger"><span></span><span></span><span></span></div>
+</nav>
+
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#womens" onclick="closeMobile()">Women's</a>
+  <a href="#mens" onclick="closeMobile()">Men's</a>
+  <a href="#dress-types" onclick="closeMobile()">Styles</a>
+  <a href="#gallery" onclick="closeMobile()">Gallery</a>
+  <a href="#videos" onclick="closeMobile()">Shows</a>
+  <a href="#liberia" onclick="closeMobile()">Liberia</a>
+  <a href="#contact" onclick="closeMobile()">Contact</a>
+</div>
+
+<!-- HERO -->
+
+<section id="hero">
+  <div class="hero-bg"></div>
+  <div class="kente-overlay"></div>
+  <div class="hero-content">
+    <p class="hero-eyebrow">Est. Monrovia · West Africa · Since 2008</p>
+    <h1 class="hero-title">LUCKY<br><span class="outline">FASHION</span></h1>
+    <p class="hero-subtitle">Where African Heritage Meets High Couture</p>
+    <div class="liberia-badge">
+      <span style="font-size:1.3rem;">🇱🇷</span>
+      <span class="liberia-txt">Proudly Liberian · Pan-African Spirit</span>
+      <span style="font-size:1.3rem;">🌍</span>
+    </div>
+    <div class="hero-btns">
+      <a href="#womens" class="btn-gold">Shop Women's</a>
+      <a href="#mens" class="btn-outline">Shop Men's</a>
+    </div>
+  </div>
+  <div class="hero-scroll"><span>Scroll</span><div class="scroll-bar"></div></div>
+</section>
+
+<!-- MARQUEE -->
+
+<div class="marquee-wrap">
+  <div class="marquee-track">
+    <span class="mi">Kente Couture</span><span class="mi">Monrovia Collection</span><span class="mi">Pan-African Pride</span><span class="mi">Ankara Elegance</span><span class="mi">West African Heritage</span><span class="mi">Lucky Fashion Show 2025</span><span class="mi">Liberian Craftsmanship</span><span class="mi">Agbada · Dashiki · Kente · Aso-Oke</span><span class="mi">Made in Africa</span>
+    <span class="mi">Kente Couture</span><span class="mi">Monrovia Collection</span><span class="mi">Pan-African Pride</span><span class="mi">Ankara Elegance</span><span class="mi">West African Heritage</span><span class="mi">Lucky Fashion Show 2025</span><span class="mi">Liberian Craftsmanship</span><span class="mi">Agbada · Dashiki · Kente · Aso-Oke</span><span class="mi">Made in Africa</span>
+  </div>
+</div>
+
+<!-- WOMEN'S COLLECTION -->
+
+<section id="womens">
+  <div class="container">
+    <div class="coll-intro fade-in">
+      <div>
+        <span class="section-label">Women's Collection 2025</span>
+        <h2 class="section-title">Elegance<br>Born in Africa</h2>
+        <div class="gold-divider"></div>
+        <p class="section-body">From the sweeping ankara gowns of Lagos to the hand-woven kente of Accra — our women's collection celebrates every African woman in her full glory, power and radiant beauty.</p>
+        <div class="style-tags">
+          <span class="style-tag active">All Styles</span>
+          <span class="style-tag">Ankara</span>
+          <span class="style-tag">Kente</span>
+          <span class="style-tag">Aso-Oke</span>
+          <span class="style-tag">Bridal</span>
+          <span class="style-tag">Casual</span>
+        </div>
+      </div>
+      <div>
+        <img src="https://images.unsplash.com/photo-1618354691373-d851c5c3a990?w=700&q=85" alt="African Women's Fashion" style="width:100%;aspect-ratio:4/5;object-fit:cover;display:block;">
+      </div>
+    </div>
+    <div class="coll-grid fade-in">
+      <div class="coll-card" onclick="openLightbox(0)">
+        <img src="https://images.unsplash.com/photo-1590735213920-68192a487bc2?w=600&q=85" alt="Monrovia Sunset Gown" loading="lazy">
+        <div class="card-info">
+          <span class="card-tag">Liberia · Exclusive</span>
+          <div class="card-name">Monrovia Sunset Gown</div>
+          <div class="card-price">$1,280 USD</div>
+          <span class="card-btn">Quick View →</span>
+        </div>
+      </div>
+      <div class="coll-card" onclick="openLightbox(1)">
+        <img src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?w=600&q=85" alt="Ankara Royale Wrap" loading="lazy">
+        <div class="card-info">
+          <span class="card-tag">Ankara · Modern</span>
+          <div class="card-name">Ankara Royale Wrap</div>
+          <div class="card-price">$720 USD</div>
+          <span class="card-btn">Quick View →</span>
+        </div>
+      </div>
+      <div class="coll-card" onclick="openLightbox(2)">
+        <img src="https://images.unsplash.com/photo-1614289371518-722f2615943d?w=600&q=85" alt="Kente Heritage Gown" loading="lazy">
+        <div class="card-info">
+          <span class="card-tag">Kente · Heritage</span>
+          <div class="card-name">Kente Heritage Gown</div>
+          <div class="card-price">$950 USD</div>
+          <span class="card-btn">Quick View →</span>
+        </div>
+      </div>
+      <div class="coll-card" onclick="openLightbox(3)">
+        <img src="https://images.unsplash.com/photo-1589156229687-496a31ad1d1f?w=600&q=85" alt="Loma Bridal" loading="lazy">
+        <div class="card-info">
+          <span class="card-tag">Liberia · Bridal</span>
+          <div class="card-name">Loma Bridal Collection</div>
+          <div class="card-price">$2,100 USD</div>
+          <span class="card-btn">Quick View →</span>
+        </div>
+      </div>
+      <div class="coll-card" onclick="openLightbox(4)">
+        <img src="https://images.unsplash.com/photo-1610030469983-98e550d6193c?w=600&q=85" alt="Aso-Oke Cape" loading="lazy">
+        <div class="card-info">
+          <span class="card-tag">Aso-Oke · Couture</span>
+          <div class="card-name">Unity Ceremonial Cape</div>
+          <div class="card-price">$1,650 USD</div>
+          <span class="card-btn">Quick View →</span>
+        </div>
+      </div>
+      <div class="coll-card" onclick="openLightbox(5)">
+        <img src="https://images.unsplash.com/photo-1509631179647-0177331693ae?w=600&q=85" alt="Savannah Maxi" loading="lazy">
+        <div class="card-info">
+          <span class="card-tag">Pan-African · Casual</span>
+          <div class="card-name">Savannah Maxi Dress</div>
+          <div class="card-price">$540 USD</div>
+          <span class="card-btn">Quick View →</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MEN'S COLLECTION -->
+
+<section id="mens">
+  <div class="container">
+    <div class="mens-intro fade-in">
+      <div>
+        <span class="section-label">Men's Collection 2025</span>
+        <h2 class="section-title">The African<br><span style="color:var(--gold)">King's</span> Wardrobe</h2>
+        <div class="gold-divider"></div>
+        <p class="section-body">Agbada, dashiki, senator suits, and Liberian country cloth — our men's line blends the authority of African royalty with modern tailoring that commands every room you enter.</p>
+        <p class="section-body" style="margin-top:.8rem;">From the streets of Monrovia to the boardrooms of Nairobi — dress like the king you are.</p>
+        <a href="#gallery" class="btn-gold" style="margin-top:1.8rem;">Explore Full Men's Range</a>
+      </div>
+      <div class="mens-visual">
+        <span class="mens-badge">Men's 2025</span>
+        <img class="mens-hero-img" src="https://images.unsplash.com/photo-1617137984095-74e4e5e3613f?w=700&q=85" alt="African Men's Fashion">
+      </div>
+    </div>
+    <div class="mens-grid fade-in">
+      <div class="mens-card" onclick="openLightbox(6)">
+        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=500&q=85" alt="Grand Agbada" loading="lazy">
+        <div class="card-info">
+          <span class="card-tag">Nigerian · Agbada</span>
+          <div class="card-name">Grand Agbada Set</div>
+          <div class="card-price">$1,100 USD</div>
+        </div>
+      </div>
+      <div class="mens-card" onclick="openLightbox(7)">
+        <img src="https://images.unsplash.com/photo-1542327897-4141b355e42e?w=500&q=85" alt="Dashiki Shirt" loading="lazy">
+        <div class="card-info">
+          <span class="card-tag">Pan-African · Dashiki</span>
+          <div class="card-name">Kente Dashiki Luxe</div>
+          <div class="card-price">$380 USD</div>
+        </div>
+      </div>
+      <div class="mens-card" onclick="openLightbox(8)">
+        <img src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=500&q=85" alt="Senator Suit" loading="lazy">
+        <div class="card-info">
+          <span class="card-tag">Liberia · Senator Suit</span>
+          <div class="card-name">Bassa Warrior Suit</div>
+          <div class="card-price">$880 USD</div>
+        </div>
+      </div>
+      <div class="mens-card" onclick="openLightbox(9)">
+        <img src="https://images.unsplash.com/photo-1488161628813-04466f872be2?w=500&q=85" alt="Country Cloth Robe" loading="lazy">
+        <div class="card-info">
+          <span class="card-tag">Liberia · Country Cloth</span>
+          <div class="card-name">Monrovia Elder Robe</div>
+          <div class="card-price">$1,350 USD</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- AFRICAN DRESS TYPES -->
+
+<section id="dress-types">
+  <div class="container">
+    <div class="fade-in" style="text-align:center;max-width:700px;margin:0 auto 1rem;">
+      <span class="section-label">African Fashion Encyclopedia</span>
+      <h2 class="section-title">Traditional Styles<br>of the Continent</h2>
+      <div class="gold-divider" style="margin:1rem auto;"></div>
+      <p class="section-body" style="max-width:100%;margin:0 auto;">From the Sahara to the Cape — Africa's fashion heritage spans thousands of years and hundreds of distinct textile traditions. Discover the iconic styles we celebrate at Lucky Fashion.</p>
+    </div>
+    <div class="types-grid fade-in">
+      <div class="type-card" onclick="openLightbox(0)">
+        <div class="type-img-wrap"><img src="https://images.unsplash.com/photo-1590735213920-68192a487bc2?w=400&q=80" alt="Ankara" loading="lazy"></div>
+        <div class="type-label">Ankara</div><div class="type-sub">West Africa</div>
+      </div>
+      <div class="type-card" onclick="openLightbox(10)">
+        <div class="type-img-wrap"><img src="https://images.unsplash.com/photo-1617137984095-74e4e5e3613f?w=400&q=80" alt="Kente" loading="lazy"></div>
+        <div class="type-label">Kente</div><div class="type-sub">Ghana</div>
+      </div>
+      <div class="type-card" onclick="openLightbox(6)">
+        <div class="type-img-wrap"><img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&q=80" alt="Agbada" loading="lazy"></div>
+        <div class="type-label">Agbada</div><div class="type-sub">Nigeria</div>
+      </div>
+      <div class="type-card" onclick="openLightbox(7)">
+        <div class="type-img-wrap"><img src="https://images.unsplash.com/photo-1542327897-4141b355e42e?w=400&q=80" alt="Dashiki" loading="lazy"></div>
+        <div class="type-label">Dashiki</div><div class="type-sub">Pan-African</div>
+      </div>
+      <div class="type-card" onclick="openLightbox(5)">
+        <div class="type-img-wrap"><img src="https://images.unsplash.com/photo-1509631179647-0177331693ae?w=400&q=80" alt="Boubou" loading="lazy"></div>
+        <div class="type-label">Boubou / Kaftan</div><div class="type-sub">Senegal · Mali</div>
+      </div>
+      <div class="type-card" onclick="openLightbox(4)">
+        <div class="type-img-wrap"><img src="https://images.unsplash.com/photo-1610030469983-98e550d6193c?w=400&q=80" alt="Aso-Oke" loading="lazy"></div>
+        <div class="type-label">Aso-Oke</div><div class="type-sub">Nigeria · Yoruba</div>
+      </div>
+      <div class="type-card" onclick="openLightbox(2)">
+        <div class="type-img-wrap"><img src="https://images.unsplash.com/photo-1614289371518-722f2615943d?w=400&q=80" alt="Shweshwe" loading="lazy"></div>
+        <div class="type-label">Shweshwe</div><div class="type-sub">South Africa</div>
+      </div>
+      <div class="type-card" onclick="openLightbox(9)">
+        <div class="type-img-wrap"><img src="https://images.unsplash.com/photo-1488161628813-04466f872be2?w=400&q=80" alt="Country Cloth" loading="lazy"></div>
+        <div class="type-label">Country Cloth</div><div class="type-sub">Liberia 🇱🇷</div>
+      </div>
+      <div class="type-card" onclick="openLightbox(1)">
+        <div class="type-img-wrap"><img src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?w=400&q=80" alt="Batik" loading="lazy"></div>
+        <div class="type-label">Batik / Tie-Dye</div><div class="type-sub">East Africa</div>
+      </div>
+      <div class="type-card" onclick="openLightbox(8)">
+        <div class="type-img-wrap"><img src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=400&q=80" alt="Senator Suit" loading="lazy"></div>
+        <div class="type-label">Senator Suit</div><div class="type-sub">West Africa</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PHOTO GALLERY -->
+
+<section id="gallery">
+  <div class="container">
+    <div class="fade-in">
+      <span class="section-label">Visual Archive — African Fashion in Focus</span>
+      <h2 class="section-title">Photo Gallery</h2>
+      <div class="gold-divider"></div>
+    </div>
+    <div class="gallery-filters fade-in">
+      <button class="gf-btn active" onclick="filterGallery('all',this)">All Photos</button>
+      <button class="gf-btn" onclick="filterGallery('women',this)">Women's Fashion</button>
+      <button class="gf-btn" onclick="filterGallery('men',this)">Men's Fashion</button>
+      <button class="gf-btn" onclick="filterGallery('runway',this)">Runway Looks</button>
+      <button class="gf-btn" onclick="filterGallery('liberia',this)">Liberia</button>
+    </div>
+    <div class="gallery-masonry fade-in" id="galleryGrid">
+      <a class="gal-item" data-cat="women runway" onclick="openLightbox(0)">
+        <img src="https://images.unsplash.com/photo-1590735213920-68192a487bc2?w=500&q=80" alt="Ankara Evening Gown" loading="lazy">
+        <div class="gal-hover"><div class="gal-zoom">+</div></div>
+        <div class="gal-caption">Ankara Evening Gown</div>
+      </a>
+      <a class="gal-item" data-cat="women" onclick="openLightbox(1)">
+        <img src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?w=500&q=80" alt="Ankara Wrap" loading="lazy">
+        <div class="gal-hover"><div class="gal-zoom">+</div></div>
+        <div class="gal-caption">Ankara Royale Wrap</div>
+      </a>
+      <a class="gal-item" data-cat="men" onclick="openLightbox(6)">
+        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=500&q=80" alt="African Men" loading="lazy">
+        <div class="gal-hover"><div class="gal-zoom">+</div></div>
+        <div class="gal-caption">Grand Agbada Set</div>
+      </a>
+      <a class="gal-item" data-cat="women" onclick="openLightbox(2)">
+        <img src="https://images.unsplash.com/photo-1614289371518-722f2615943d?w=500&q=80" alt="Kente Gown" loading="lazy">
+        <div class="gal-hover"><div class="gal-zoom">+</div></div>
+        <div class="gal-caption">Kente Heritage Gown</div>
+      </a>
+      <a class="gal-item" data-cat="men" onclick="openLightbox(7)">
+        <img src="https://images.unsplash.com/photo-1542327897-4141b355e42e?w=500&q=80" alt="Dashiki" loading="lazy">
+        <div class="gal-hover"><div class="gal-zoom">+</div></div>
+        <div class="gal-caption">Kente Dashiki Luxe</div>
+      </a>
+      <a class="gal-item" data-cat="women liberia runway" onclick="openLightbox(3)">
+        <img src="https://images.unsplash.com/photo-1589156229687-496a31ad1d1f?w=500&q=80" alt="Bridal" loading="lazy">
+        <div class="gal-hover"><div class="gal-zoom">+</div></div>
+        <div class="gal-caption">Loma Bridal Collection</div>
+      </a>
+      <a class="gal-item" data-cat="men liberia" onclick="openLightbox(8)">
+        <img src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=500&q=80" alt="Senator Suit" loading="lazy">
+        <div class="gal-hover"><div class="gal-zoom">+</div></div>
+        <div class="gal-caption">Bassa Warrior Suit</div>
+      </a>
+      <a class="gal-item" data-cat="women runway" onclick="openLightbox(4)">
+        <img src="https://images.unsplash.com/photo-1610030469983-98e550d6193c?w=500&q=80" alt="Aso-Oke" loading="lazy">
+        <div class="gal-hover"><div class="gal-zoom">+</div></div>
+        <div class="gal-caption">Unity Ceremonial Cape</div>
+      </a>
+      <a class="gal-item" data-cat="liberia men" onclick="openLightbox(9)">
+        <img src="https://images.unsplash.com/photo-1488161628813-04466f872be2?w=500&q=80" alt="Country Cloth" loading="lazy">
+        <div class="gal-hover"><div class="gal-zoom">+</div></div>
+        <div class="gal-caption">Monrovia Elder Robe · Country Cloth</div>
+      </a>
+      <a class="gal-item" data-cat="women" onclick="openLightbox(5)">
+        <img src="https://images.unsplash.com/photo-1509631179647-0177331693ae?w=500&q=80" alt="Maxi Dress" loading="lazy">
+        <div class="gal-hover"><div class="gal-zoom">+</div></div>
+        <div class="gal-caption">Savannah Maxi Dress</div>
+      </a>
+      <a class="gal-item" data-cat="men runway" onclick="openLightbox(10)">
+        <img src="https://images.unsplash.com/photo-1617137984095-74e4e5e3613f?w=500&q=80" alt="Men's Feature" loading="lazy">
+        <div class="gal-hover"><div class="gal-zoom">+</div></div>
+        <div class="gal-caption">Men's Collection Feature</div>
+      </a>
+      <a class="gal-item" data-cat="liberia women" onclick="openLightbox(11)">
+        <img src="https://images.unsplash.com/photo-1618354691373-d851c5c3a990?w=500&q=80" alt="Liberian Fashion" loading="lazy">
+        <div class="gal-hover"><div class="gal-zoom">+</div></div>
+        <div class="gal-caption">Liberian Heritage Look 🇱🇷</div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- VIDEOS SECTION -->
+
+<section id="videos">
+  <div class="container">
+    <div class="fade-in">
+      <span class="section-label">Lucky Fashion Shows · African Fashion TV</span>
+      <h2 class="section-title">Watch &amp; Be Inspired</h2>
+      <div class="gold-divider"></div>
+      <p class="section-body">Experience the full magic of African fashion — from runway shows to style tutorials. Click any video to watch it play right here.</p>
+    </div>
+    <div class="video-tabs fade-in" style="margin-top:2rem;">
+      <button class="vt-btn active" onclick="switchVTab(this)">All Videos</button>
+      <button class="vt-btn" onclick="switchVTab(this)">Fashion Shows</button>
+      <button class="vt-btn" onclick="switchVTab(this)">Style Tutorials</button>
+      <button class="vt-btn" onclick="switchVTab(this)">Men's Style</button>
+      <button class="vt-btn" onclick="switchVTab(this)">Liberia</button>
+    </div>
+
+```
+<!-- FEATURED EMBED — plays directly in page -->
+<div class="videos-featured fade-in">
+  <div>
+    <div class="video-embed-wrap">
+      <iframe src="https://www.youtube.com/embed/8M4T47nfT4M?rel=0&showinfo=0&color=white" title="African Fashion Show" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+    </div>
+    <div class="vid-meta">
+      <span class="vid-label">🏆 Lucky Fashion Show · Featured 2025</span>
+      <div class="vid-title">Grand African Fashion Week — Full Show</div>
+      <div class="vid-info">Live YouTube Stream · Full Runway Show · Playing Now</div>
+    </div>
+  </div>
+  <div class="video-side">
+    <div>
+      <div class="video-thumb-card" onclick="loadVideo('UExK0bkQzIU')">
+        <img class="thumb-img" src="https://img.youtube.com/vi/UExK0bkQzIU/hqdefault.jpg" alt="African Fashion Tutorial">
+        <div class="play-overlay"><div class="play-circle"></div></div>
+      </div>
+      <div class="vid-meta">
+        <span class="vid-label">Style Tutorial · Women's</span>
+        <div class="vid-title">How to Style African Print</div>
+        <div class="vid-info">Tutorial · Click to Play</div>
+      </div>
+    </div>
+    <div>
+      <div class="video-thumb-card" onclick="loadVideo('eTSFRQbPRb4')">
+        <img class="thumb-img" src="https://img.youtube.com/vi/eTSFRQbPRb4/hqdefault.jpg" alt="African Men's Fashion">
+        <div class="play-overlay"><div class="play-circle"></div></div>
+      </div>
+      <div class="vid-meta">
+        <span class="vid-label">Men's Fashion Showcase</span>
+        <div class="vid-title">African Menswear Runway</div>
+        <div class="vid-info">Show · Click to Play</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- MORE VIDEOS -->
+<div class="video-grid-row fade-in">
+  <div>
+    <div class="video-thumb-card" onclick="loadVideo('IXp8Mf_Oj0M')">
+      <img class="thumb-img" src="https://img.youtube.com/vi/IXp8Mf_Oj0M/hqdefault.jpg" alt="Accra Fashion Week" loading="lazy">
+      <div class="play-overlay"><div class="play-circle" style="width:50px;height:50px;"></div></div>
+    </div>
+    <div class="vid-meta">
+      <span class="vid-label">Fashion Week · Ghana 2024</span>
+      <div class="vid-title">Accra Fashion Week Highlights</div>
+      <div class="vid-info">Click to Watch ▶</div>
+    </div>
+  </div>
+  <div>
+    <div class="video-thumb-card" onclick="loadVideo('9lp-RWf28nA')">
+      <img class="thumb-img" src="https://img.youtube.com/vi/9lp-RWf28nA/hqdefault.jpg" alt="Ankara Lookbook" loading="lazy">
+      <div class="play-overlay"><div class="play-circle" style="width:50px;height:50px;"></div></div>
+    </div>
+    <div class="vid-meta">
+      <span class="vid-label">Style Guide · Ankara</span>
+      <div class="vid-title">Ultimate Ankara Fashion Lookbook</div>
+      <div class="vid-info">Click to Watch ▶</div>
+    </div>
+  </div>
+  <div>
+    <div class="video-thumb-card" onclick="loadVideo('K5V5FMPWZ6E')">
+      <img class="thumb-img" src="https://img.youtube.com/vi/K5V5FMPWZ6E/hqdefault.jpg" alt="Agbada Style" loading="lazy">
+      <div class="play-overlay"><div class="play-circle" style="width:50px;height:50px;"></div></div>
+    </div>
+    <div class="vid-meta">
+      <span class="vid-label">Men's · Agbada Guide</span>
+      <div class="vid-title">How to Rock Agbada in 2025</div>
+      <div class="vid-info">Click to Watch ▶</div>
+    </div>
+  </div>
+</div>
+```
+
+  </div>
+</section>
+
+<!-- VIDEO MODAL (popup player) -->
+
+<div class="vmodal" id="videoModal">
+  <div class="vm-inner">
+    <button class="vm-close" onclick="closeVModal()">✕ CLOSE</button>
+    <div class="vm-embed">
+      <iframe id="modalIframe" src="" title="Fashion Video" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    </div>
+  </div>
+</div>
+
+<!-- LIBERIA -->
+
+<section id="liberia">
+  <div class="container">
+    <div class="lib-grid">
+      <div class="lib-img-stack fade-in">
+        <img class="lib-main-img" src="https://images.unsplash.com/photo-1618354691373-d851c5c3a990?w=700&q=85" alt="Liberian Fashion">
+        <img class="lib-float" src="https://images.unsplash.com/photo-1509631179647-0177331693ae?w=400&q=80" alt="Liberian Textile">
+      </div>
+      <div class="fade-in">
+        <span class="section-label">Our Roots</span>
+        <h2 class="section-title">Born in<br><span style="color:var(--gold)">Monrovia,</span><br>Liberia 🇱🇷</h2>
+        <div class="gold-divider"></div>
+        <p class="section-body">Lucky Fashion was born on the vibrant streets of Monrovia, where the colors of the Liberian coast, the hand-woven country cloth of the Kpelle and Bassa peoples, and the energy of the market weave together into something extraordinary.</p>
+        <p class="section-body" style="margin-top:.8rem;">From the banks of the Saint Paul River to the runways of Lagos and Accra — we carry Liberia in every stitch, every color, every thread.</p>
+        <div class="lib-stats">
+          <div class="stat-item"><span class="stat-num">15+</span><span class="stat-label">Years of Craft</span></div>
+          <div class="stat-item"><span class="stat-num">32</span><span class="stat-label">African Nations</span></div>
+          <div class="stat-item"><span class="stat-num">500+</span><span class="stat-label">Artisan Partners</span></div>
+          <div class="stat-item"><span class="stat-num">8</span><span class="stat-label">Int'l Shows</span></div>
+        </div>
+        <a href="#contact" class="btn-gold" style="margin-top:2.5rem;">Visit Our Atelier</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- NEWSLETTER -->
+
+<div class="newsletter-strip">
+  <div class="container">
+    <div class="nl-inner">
+      <div class="nl-text">
+        <h3>Join the Inner Circle</h3>
+        <p>First access to new collections, shows &amp; exclusive Liberian editions</p>
+      </div>
+      <div class="nl-form">
+        <input type="email" class="nl-input" placeholder="Your email address">
+        <button class="nl-btn">Subscribe</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CONTACT -->
+
+<section id="contact">
+  <div class="container">
+    <div class="contact-grid">
+      <div class="fade-in">
+        <span class="section-label">Get In Touch</span>
+        <h2 class="section-title">Visit Our<br>Atelier</h2>
+        <div class="gold-divider"></div>
+        <p class="section-body">Whether you're looking for a custom creation, bridal couture, men's tailoring, or simply want to experience Lucky Fashion — our doors are open in the heart of Monrovia.</p>
+        <div class="c-items">
+          <div class="c-item">
+            <div class="c-icon">📍</div>
+            <div><span class="c-label">Flagship Atelier</span><div class="c-val">14 Broad Street, Monrovia<br>Liberia, West Africa</div></div>
+          </div>
+          <div class="c-item">
+            <div class="c-icon">📞</div>
+            <div><span class="c-label">Phone &amp; WhatsApp</span><div class="c-val">+231 77 000 0000</div></div>
+          </div>
+          <div class="c-item">
+            <div class="c-icon">✉️</div>
+            <div><span class="c-label">Email</span><div class="c-val">hello@luckyfashion.lr</div></div>
+          </div>
+          <div class="c-item">
+            <div class="c-icon">🕐</div>
+            <div><span class="c-label">Hours</span><div class="c-val">Mon–Sat: 9AM – 7PM<br>Sunday: By Appointment</div></div>
+          </div>
+        </div>
+      </div>
+      <div class="fade-in">
+        <form class="cf" onsubmit="handleSubmit(event)">
+          <div class="f-row">
+            <div class="f-group"><label class="f-label">First Name</label><input type="text" class="f-input" placeholder="Your name" required></div>
+            <div class="f-group"><label class="f-label">Last Name</label><input type="text" class="f-input" placeholder="Family name"></div>
+          </div>
+          <div class="f-group"><label class="f-label">Email</label><input type="email" class="f-input" placeholder="you@email.com" required></div>
+          <div class="f-group"><label class="f-label">Phone / WhatsApp</label><input type="tel" class="f-input" placeholder="+231..."></div>
+          <div class="f-group">
+            <label class="f-label">Service</label>
+            <select class="f-select">
+              <option>Custom Couture Design</option>
+              <option>Bridal Collection</option>
+              <option>Men's Tailoring</option>
+              <option>Ready-to-Wear</option>
+              <option>Fashion Show Inquiry</option>
+              <option>Wholesale / Boutique</option>
+              <option>Press &amp; Media</option>
+              <option>General Inquiry</option>
+            </select>
+          </div>
+          <div class="f-group"><label class="f-label">Message</label><textarea class="f-textarea" placeholder="Tell us about your vision..."></textarea></div>
+          <button type="submit" class="f-submit">Send Message →</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <span class="fb-name">LUCKY FASHION</span>
+        <p class="fb-tag">African elegance, Liberian soul. Crafting couture that honors the past while dressing the future of the continent — one stitch at a time.</p>
+        <div class="socials">
+          <a href="#" class="soc" title="Instagram">IG</a>
+          <a href="#" class="soc" title="Facebook">FB</a>
+          <a href="#" class="soc" title="TikTok">TK</a>
+          <a href="#" class="soc" title="YouTube">YT</a>
+          <a href="#" class="soc" title="WhatsApp">WA</a>
+        </div>
+      </div>
+      <div class="fc">
+        <h4>Collections</h4>
+        <ul>
+          <li><a href="#">Women's 2025</a></li>
+          <li><a href="#">Men's Collection</a></li>
+          <li><a href="#">Kente Heritage</a></li>
+          <li><a href="#">Bridal Couture</a></li>
+          <li><a href="#">Liberia Edition</a></li>
+          <li><a href="#">Archive</a></li>
+        </ul>
+      </div>
+      <div class="fc">
+        <h4>World</h4>
+        <ul>
+          <li><a href="#">Our Story</a></li>
+          <li><a href="#">Artisan Partners</a></li>
+          <li><a href="#">Fashion Shows</a></li>
+          <li><a href="#">Press Room</a></li>
+          <li><a href="#">Sustainability</a></li>
+          <li><a href="#">Careers</a></li>
+        </ul>
+      </div>
+      <div class="fc">
+        <h4>Client Services</h4>
+        <ul>
+          <li><a href="#">Book Appointment</a></li>
+          <li><a href="#">Custom Orders</a></li>
+          <li><a href="#">Worldwide Shipping</a></li>
+          <li><a href="#">Size Guide</a></li>
+          <li><a href="#">Returns</a></li>
+          <li><a href="#">Contact Us</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="fc-copy">© 2025 Lucky Fashion. All Rights Reserved. Monrovia, Liberia.</div>
+      <div style="display:flex;gap:.4rem;align-items:center;">
+        <span style="font-size:.6rem;letter-spacing:.15em;text-transform:uppercase;color:var(--warm);opacity:.4;margin-right:.3rem;">Serving</span>
+        <span style="font-size:1.2rem;">🇱🇷</span><span style="font-size:1.2rem;">🇬🇭</span><span style="font-size:1.2rem;">🇳🇬</span><span style="font-size:1.2rem;">🇸🇳</span><span style="font-size:1.2rem;">🇿🇦</span><span style="font-size:1.2rem;">🇰🇪</span><span style="font-size:1.2rem;">🌍</span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- IMAGE LIGHTBOX -->
+
+<div class="lightbox" id="lightbox">
+  <div class="lb-inner">
+    <button class="lb-close" onclick="closeLightbox()">✕ CLOSE</button>
+    <button class="lb-nav lb-prev" onclick="lbNav(-1)">‹</button>
+    <img class="lb-img" id="lbImg" src="" alt="">
+    <p class="lb-caption" id="lbCaption"></p>
+    <button class="lb-nav lb-next" onclick="lbNav(1)">›</button>
+  </div>
+</div>
+
+<script>
+// ── Lightbox data ────────────────────────────────────────────────────────────
+const lbImages = [
+  {src:'https://images.unsplash.com/photo-1590735213920-68192a487bc2?w=1400&q=90',cap:'Ankara Evening Gown — Lucky Fashion Women\'s 2025'},
+  {src:'https://images.unsplash.com/photo-1524504388940-b1c1722653e1?w=1400&q=90',cap:'Ankara Royale Wrap'},
+  {src:'https://images.unsplash.com/photo-1614289371518-722f2615943d?w=1400&q=90',cap:'Kente Heritage Gown'},
+  {src:'https://images.unsplash.com/photo-1589156229687-496a31ad1d1f?w=1400&q=90',cap:'Loma Bridal Collection — Liberia 🇱🇷'},
+  {src:'https://images.unsplash.com/photo-1610030469983-98e550d6193c?w=1400&q=90',cap:'Unity Ceremonial Cape — Aso-Oke'},
+  {src:'https://images.unsplash.com/photo-1509631179647-0177331693ae?w=1400&q=90',cap:'Savannah Maxi Dress — Boubou Style'},
+  {src:'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=1400&q=90',cap:'Grand Agbada Set — Men\'s Collection 2025'},
+  {src:'https://images.unsplash.com/photo-1542327897-4141b355e42e?w=1400&q=90',cap:'Kente Dashiki Luxe — Pan-African Men\'s'},
+  {src:'https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=1400&q=90',cap:'Bassa Warrior Senator Suit — Liberia'},
+  {src:'https://images.unsplash.com/photo-1488161628813-04466f872be2?w=1400&q=90',cap:'Monrovia Elder Robe — Liberian Country Cloth 🇱🇷'},
+  {src:'https://images.unsplash.com/photo-1617137984095-74e4e5e3613f?w=1400&q=90',cap:'Kente — Ghana\'s Royal Woven Cloth'},
+  {src:'https://images.unsplash.com/photo-1618354691373-d851c5c3a990?w=1400&q=90',cap:'Liberian Heritage Look 🇱🇷'},
+];
+let currentLb=0;
+
+function openLightbox(i){
+  currentLb=i;
+  document.getElementById('lbImg').src=lbImages[i].src;
+  document.getElementById('lbCaption').textContent=lbImages[i].cap;
+  document.getElementById('lightbox').classList.add('open');
+  document.body.style.overflow='hidden';
+}
+function closeLightbox(){
+  document.getElementById('lightbox').classList.remove('open');
+  document.body.style.overflow='';
+}
+function lbNav(dir){
+  currentLb=(currentLb+dir+lbImages.length)%lbImages.length;
+  openLightbox(currentLb);
+}
+document.getElementById('lightbox').addEventListener('click',function(e){if(e.target===this)closeLightbox();});
+
+// ── Cursor ───────────────────────────────────────────────────────────────────
+const cur=document.getElementById('cursor');
+const ring=document.getElementById('cursorRing');
+let mx=0,my=0,rx=0,ry=0;
+document.addEventListener('mousemove',e=>{
+  mx=e.clientX;my=e.clientY;
+  cur.style.left=mx+'px';cur.style.top=my+'px';
+});
+(function animRing(){
+  rx+=(mx-rx)*.12;ry+=(my-ry)*.12;
+  ring.style.left=rx+'px';ring.style.top=ry+'px';
+  requestAnimationFrame(animRing);
+})();
+
+// ── Nav ──────────────────────────────────────────────────────────────────────
+window.addEventListener('scroll',()=>document.getElementById('navbar').classList.toggle('scrolled',scrollY>60));
+const hb=document.getElementById('hamburger'),mm=document.getElementById('mobileMenu');
+hb.addEventListener('click',()=>{hb.classList.toggle('active');mm.classList.toggle('open');});
+function closeMobile(){hb.classList.remove('active');mm.classList.remove('open');}
+
+// ── Fade-in ──────────────────────────────────────────────────────────────────
+const obs=new IntersectionObserver(entries=>{
+  entries.forEach((en,i)=>{if(en.isIntersecting){setTimeout(()=>en.target.classList.add('visible'),i*90);obs.unobserve(en.target);}});
+},{threshold:.08});
+document.querySelectorAll('.fade-in').forEach(el=>obs.observe(el));
+
+// ── Gallery filter ───────────────────────────────────────────────────────────
+function filterGallery(cat,btn){
+  document.querySelectorAll('.gf-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('.gal-item').forEach(item=>{
+    const cats=item.dataset.cat||'';
+    item.style.display=(cat==='all'||cats.includes(cat))?'block':'none';
+  });
+}
+
+// ── Video modal (popup) ──────────────────────────────────────────────────────
+function loadVideo(id){
+  document.getElementById('modalIframe').src='https://www.youtube.com/embed/'+id+'?autoplay=1&rel=0';
+  document.getElementById('videoModal').classList.add('open');
+  document.body.style.overflow='hidden';
+}
+function closeVModal(){
+  document.getElementById('modalIframe').src='';
+  document.getElementById('videoModal').classList.remove('open');
+  document.body.style.overflow='';
+}
+document.getElementById('videoModal').addEventListener('click',function(e){if(e.target===this)closeVModal();});
+
+// ── Video tabs ───────────────────────────────────────────────────────────────
+function switchVTab(btn){
+  document.querySelectorAll('.vt-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+}
+
+// ── Style tags ───────────────────────────────────────────────────────────────
+document.querySelectorAll('.style-tag').forEach(t=>{
+  t.addEventListener('click',function(){
+    document.querySelectorAll('.style-tag').forEach(x=>x.classList.remove('active'));
+    this.classList.add('active');
+  });
+});
+
+// ── Contact form ─────────────────────────────────────────────────────────────
+function handleSubmit(e){
+  e.preventDefault();
+  const btn=e.target.querySelector('.f-submit');
+  btn.textContent='✓ Message Sent!';btn.style.background='#1A5C2A';btn.style.color='#fff';
+  setTimeout(()=>{btn.textContent='Send Message →';btn.style.background='';btn.style.color='';e.target.reset();},3500);
+}
+
+// ── ESC key ──────────────────────────────────────────────────────────────────
+document.addEventListener('keydown',e=>{if(e.key==='Escape'){closeLightbox();closeVModal();}});
+
+// ── Mobile: hide cursor ──────────────────────────────────────────────────────
+document.addEventListener('touchstart',()=>{cur.style.display='none';ring.style.display='none';},{once:true});
+</script>
+
+</body>
+</html>
